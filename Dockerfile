@@ -1,6 +1,6 @@
 # etherdelta-local
-# Build using: docker build -t "etherdelta-local:0.0.1" --rm=true --no-cache .
-# Run using: docker run -itd --name="etherdelta" -p 9001:9001 etherdelta-local:0.0.1
+# Build using: docker build -t "etherdelta-local:0.0.1" .
+# Run using: docker exec -it etherdelta-local:0.0.1 bash -c "cd etherdelta.github.io/site && python -m SimpleHTTPServer 9001"
 
 # NAME             "etherdelta-local
 # VERSION          0.0.1
@@ -13,10 +13,7 @@ RUN apk update && apk upgrade
 
 RUN apk add git bash python
 
-RUN git clone https://github.com/etherdelta/etherdelta.github.io.git \
-  && cd etherdelta.github.io \
-  && rm index.html \
-  && mv index_com.html index.html
+RUN git clone https://github.com/etherdelta/etherdelta.github.io.git
 
 EXPOSE 9001
 
